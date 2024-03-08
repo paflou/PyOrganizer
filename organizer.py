@@ -6,17 +6,18 @@ from tkinter import filedialog
 
 def browse():
     path = filedialog.askdirectory()
+    global folder_path
     if path:
-        FOLDER_PATH = path
+        folder_path = path
         print("Selected Folder: ", path)
         label = tk.Label(root, text = path)
         label.pack()
 
 def organize():
-    files = glob.glob(FOLDER_PATH + "/*")
+    files = glob.glob(folder_path + "/*")
     print(files)
     for file in files:
-        file = os.path.relpath(file, FOLDER_PATH)
+        file = os.path.relpath(file, folder_path)
         #document file formats
         if file.endswith(".txt") or file.endswith(".pdf") or file.endswith(".docx") \
         or file.endswith(".doc") or file.endswith(".odt") or file.endswith(".xls") \
@@ -60,53 +61,53 @@ def organize():
 
 
 def documents(file):
-    if(not os.path.exists(FOLDER_PATH + "/documents")):
-        os.mkdir(FOLDER_PATH + "/documents")
+    if(not os.path.exists(folder_path + "/documents")):
+        os.mkdir(folder_path + "/documents")
     movingMessage = "Moving "+ file + " to documents folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/documents/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/documents/" + file)
 
 def audio(file):
-    if(not os.path.exists(FOLDER_PATH + "/audio")):
-        os.mkdir(FOLDER_PATH + "/audio")
+    if(not os.path.exists(folder_path + "/audio")):
+        os.mkdir(folder_path + "/audio")
     movingMessage = "Moving "+ file + " to audio folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()    
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/audio/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/audio/" + file)
 
 def videos(file):
-    if(not os.path.exists(FOLDER_PATH + "/videos")):
-        os.mkdir(FOLDER_PATH + "/videos")
+    if(not os.path.exists(folder_path + "/videos")):
+        os.mkdir(folder_path + "/videos")
     movingMessage = "Moving "+ file + " to videos folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()    
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/videos/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/videos/" + file)
 
 def images(file):
-    if(not os.path.exists(FOLDER_PATH + "/images")):
-        os.mkdir(FOLDER_PATH + "/images")
+    if(not os.path.exists(folder_path + "/images")):
+        os.mkdir(folder_path + "/images")
     movingMessage = "Moving "+ file + " to images folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()    
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/images/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/images/" + file)
 
 def archives(file):
-    if(not os.path.exists(FOLDER_PATH + "/archives")):
-        os.mkdir(FOLDER_PATH + "/archives")
+    if(not os.path.exists(folder_path + "/archives")):
+        os.mkdir(folder_path + "/archives")
     movingMessage = "Moving "+ file + " to archives folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()    
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/archives/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/archives/" + file)
 
 def folders(file):
-    if(not os.path.exists(FOLDER_PATH + "/folders")):
-        os.mkdir(FOLDER_PATH + "/folders")
+    if(not os.path.exists(folder_path + "/folders")):
+        os.mkdir(folder_path + "/folders")
     #dont put your folders
     if not(file == "documents" or file == "audio" or file == "videos" \
     or file == "images" or file == "archives" or file =="misc" or file == "folders"):
@@ -114,16 +115,16 @@ def folders(file):
         print(movingMessage)
         label = tk.Label(root, text = movingMessage)
         label.pack()    
-        shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/folders/" + file)
+        shutil.move(folder_path + "/" + file,folder_path +"/folders/" + file)
 
 def misc(file):
-    if(not os.path.exists(FOLDER_PATH + "/misc")):
-        os.mkdir(FOLDER_PATH + "/misc")
+    if(not os.path.exists(folder_path + "/misc")):
+        os.mkdir(folder_path + "/misc")
     movingMessage = "Moving "+ file + " to misc folder"
     print(movingMessage)
     label = tk.Label(root, text = movingMessage)
     label.pack()
-    shutil.move(FOLDER_PATH + "/" + file,FOLDER_PATH +"/misc/" + file)
+    shutil.move(folder_path + "/" + file,folder_path +"/misc/" + file)
 
 root = tk.Tk()
 root.title("File Organizer")
@@ -135,7 +136,5 @@ browse_button.pack(side="right",anchor="s")
 run_button = tk.Button(root, text="Start", command=organize, bg="green")
 run_button.pack(side="left", anchor="s")
 
-global FOLDER_PATH
-FOLDER_PATH = os.getcwd()
 # Start the main event loop
 root.mainloop()
