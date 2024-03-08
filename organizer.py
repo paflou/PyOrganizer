@@ -43,31 +43,26 @@ def organize():
 def documents(file):
     if(not os.path.exists(os.getcwd() + "/documents")):
         os.mkdir("documents")
-    
     shutil.move(file,"documents/" + file)
 
 def audio(file):
     if(not os.path.exists(os.getcwd() + "/audio")):
         os.mkdir("audio")
-    
     shutil.move(file,"audio/" + file)
 
 def videos(file):
     if(not os.path.exists(os.getcwd() + "/videos")):
         os.mkdir("videos")
-    
     shutil.move(file,"videos/" + file)
 
 def images(file):
     if(not os.path.exists(os.getcwd() + "/images")):
         os.mkdir("images")
-    
     shutil.move(file,"images/" + file)
 
 def misc(file):
     if(not os.path.exists(os.getcwd() + "/misc")):
         os.mkdir("misc")
-    
     shutil.move(file,"misc/" + file)
 
 organize()
