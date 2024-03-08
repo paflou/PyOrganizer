@@ -2,6 +2,7 @@ import glob
 import shutil
 import os
 
+
 def organize():
     files = glob.glob('*')
     for file in files:
