@@ -1,6 +1,8 @@
 <h1>A Simple Python File Organizer </h1>
-<h2>Run organizer.py, browse to the directory you want to organize and click run.</h2>
-<h3>It creates the following folders: </h3
+<h2>Instructions</h2>
+<h3>For CLI: Run organizer.py with no arguements and write the directory to organize (default is current directory)</h3>
+<h3>For GUI: Run organizer.py with any arguements, browse to the directory to organize and click run</h3>
+<h3>It creates the following folders: </h3>
 <h>
   <ol>
     <li>Documents (txt, pdf, docx, doc, odt, xls, xlsx, ppt, pptx)</li>
