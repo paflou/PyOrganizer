@@ -5,9 +5,11 @@ import tkinter as tk
 from tkinter import filedialog
 import sys
 
+folder_path = ""
+
 def browse():
+    global folder_path  # Declare folder_path as global
     path = filedialog.askdirectory()
-    global folder_path
     if path:
         folder_path = path
         print("Selected Folder: ", path)
@@ -15,6 +17,10 @@ def browse():
         label.pack()
 
 def begin():
+    global folder_path  # Declare folder_path as global
+    if folder_path== "":
+        folder_path = os.getcwd()
+    
     files = glob.glob(folder_path + "/*")
     print(files)
     for file in files:
@@ -25,6 +31,7 @@ def begin():
         video = (".mp4",".mov", ".avi", ".wmv", ".webm")
         audio = (".jpg", ".gif", ".png", ".tiff", ".bmp", ".psd", ".raw", ".heif")
         archive = (".zip", ".7z", ".rar")
+
         if file.endswith(documents):
             organize(file, "documents")
 
@@ -76,6 +83,7 @@ def folders(file):
 
 # Start the main event loop
 if(len(sys.argv) > 1):
+
     root = tk.Tk()
     root.title("File Organizer")
     root.geometry("400x200")
