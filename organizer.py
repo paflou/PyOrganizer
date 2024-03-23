@@ -19,31 +19,29 @@ def begin():
     print(files)
     for file in files:
         file = os.path.relpath(file, folder_path)
-        #document file formats
-        if file.endswith(".txt") or file.endswith(".pdf") or file.endswith(".docx") \
-        or file.endswith(".doc") or file.endswith(".odt") or file.endswith(".xls") \
-        or file.endswith(".xlsx") or file.endswith(".ppt") or file.endswith(".pptx"):
+
+        documents = (".txt", ".pdf", ".docx", ".doc", ".odt", ".xls", ".xlsx", ".ppt", "pptx")
+        audio = (".m4a", ".mp3", ".flac", ".wav", ".wma", ".aac")
+        video = (".mp4",".mov", ".avi", ".wmv", ".webm")
+        audio = (".jpg", ".gif", ".png", ".tiff", ".bmp", ".psd", ".raw", ".heif")
+        archive = (".zip", ".7z", ".rar")
+        if file.endswith(documents):
             organize(file, "documents")
 
         #audio file formats
-        elif file.endswith(".m4a") or file.endswith(".mp3") or file.endswith(".flac") \
-        or file.endswith(".wav") or file.endswith(".wma") or file.endswith(".aac"):
+        elif file.endswith(audio):
             organize(file,"audio")
 
         #video file formats
-        elif file.endswith(".mp4") or file.endswith(".mov") or file.endswith(".avi") \
-        or file.endswith(".wmv") or file.endswith(".webm"):
+        elif file.endswith(video):
             organize(file,"videos")
 
         #image file formats
-        elif file.endswith(".jpg") or file.endswith(".gif") or file.endswith(".png") \
-        or file.endswith(".tiff") or file.endswith(".bmp") or file.endswith(".psd") \
-        or file.endswith(".raw") or file.endswith(".heif"):
+        elif file.endswith(audio):
             organize(file,"images")
 
         #archive file formats
-        elif file.endswith(".zip") or file.endswith(".7z") or file.endswith(".rar") \
-        or ".tar" in file:
+        elif file.endswith(archive) or ".tar" in file:
             organize(file,"archives")
 
         elif "." not in file and file != "":
@@ -51,7 +49,7 @@ def begin():
 
         #everything else
         else:
-            if file == "organizer.py" or  "." not in file:
+            if file == "organizer.py" or file == "createTests.py" or  "." not in file:
                 continue
             organize(file,"misc")
 
